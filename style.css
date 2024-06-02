@@ -8,6 +8,7 @@ body{
     height: 100vh;
     overflow-y: hidden;
     overflow-x: hidden;
+    background-color: #fff0db;
 }
 nav{
     display: flex;
@@ -16,13 +17,14 @@ nav{
 }
 nav img{
     width: 150px;
+    margin: 20px;
 }
 .controls{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f4f4f4;
+    background-color: #fff0db; /* Light charcoal gray */
 }
 .filter-buttons{
     display: flex;
@@ -36,7 +38,7 @@ nav img{
     border-radius: 4px;
 }
 .filter-button.active{
-    background-color: #ccc;
+    background-color: #797899; /* Charcoal gray */
 }
 #searchBar{
     padding: 10px;
@@ -46,11 +48,12 @@ nav img{
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
+    justify-content: space-around; /* Center characters */
 }
 .character-card {
     display: inline-block; 
-    background-color: #f4f4f4;
-    border: 1px solid #ccc;
+    background-color: #faf0e6; /* Light charcoal gray */
+    border: 1px solid #000000;
     border-radius: 8px;
     width: calc(25% - 20px); 
     margin: 10px;
@@ -81,7 +84,7 @@ nav img{
 .character-card .character-info p {
     margin: 0;
     font-size: 14px; 
-    color: #666; 
+    color: #797899; 
 }
 .pagination{
     display: flex;
@@ -98,7 +101,7 @@ nav img{
     border-radius: 5px;
 }
 .pagination-button:hover {
-    background-color: #0056b3;
+    background-color: #797899;
 }
 .page-numbers{
     display: flex;
@@ -112,7 +115,7 @@ nav img{
     border-radius: 5px;
 }
 .page-numbers button.active {
-    background-color: #007bff;
+    background-color: #797899; /* Blue */
     color: white;
 }
 
@@ -128,7 +131,7 @@ nav img{
 }
 
 .back-button {
-    background-color: #007bff;
+    background-color: #797899; /* Blue */
     border: none;
     color: white;
     padding: 10px 20px;
@@ -137,5 +140,47 @@ nav img{
     margin-bottom: 20px;
 }
 .back-button:hover {
-    background-color: #0056b3;
+    background-color: #797899;
+}
+
+/* MEDIA QUERIES FOR PHONES */
+
+@media screen and (max-width: 768px) {
+   
+    nav {
+        height: 75px; 
+        width: 100vw; 
+    }
+
+    nav img {
+        width: auto;
+        height: auto;
+    }
+    .controls{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .character-list {
+        display: flex;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        flex-wrap: wrap;
+        justify-content: space-between; 
+    }
+
+    .character-card {
+        width: calc(50% - 20px); 
+        margin: 10px 0; 
+    }
+    .character-card img {
+        width: 90%;
+        max-width: 100%; 
+        height: auto; 
+    }
+
+   
 }

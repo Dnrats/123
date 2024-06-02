@@ -14,10 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let allCharacters = [];
     let filteredCharacters = [];
     let currentPage = 1;
-    const charactersPerPage = 8;
+    let charactersPerPage;
     let totalPages = 1;
     let currentFilter = 'all';
     let searchQuery = '';
+
+// Adjust charactersPerPage based on screen size
+if (window.matchMedia("(max-width: 768px)").matches) {
+    charactersPerPage = 4; // For mobile devices
+} else {
+    charactersPerPage = 8; // For desktop
+}
+
 
     // Function to fetch all characters from the API
     async function fetchAllCharacters() {
