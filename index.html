@@ -1,32 +1,36 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/style.css">
-    
+    <title>Rick and Morty Characters</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <img src="/brandify_logo.svg" onclick="location.reload()" alt="website logo">
+        <img src="/brandify_logo.svg" alt="website logo">
     </nav>
-    <div class="settings">
-        <div class="filter-buttons">
-            <button data-status="all" class="filter-button active">All</button>
-            <button data-status="alive" class="filter-button">Alive</button>
-            <button data-status="dead" class="filter-button">Dead</button>
+    <div id="mainSection">
+        <div class="controls">
+            <div class="filter-buttons">
+                <button data-status="all" class="filter-button active">All</button>
+                <button data-status="alive" class="filter-button">Alive</button>
+                <button data-status="dead" class="filter-button">Dead</button>
+            </div>
+            <input type="text" id="searchBar" placeholder="Search Characters...">
         </div>
-        <input type="text" id="searchBar" placeholder="Search">
+        <div id="characterList" class="character-list"></div>
+        <div class="pagination">
+            <button id="firstPage" class="pagination-button">First</button>
+            <div id="pageNumbers" class="page-numbers"></div>
+            <button id="lastPage" class="pagination-button">Last</button>
+        </div>
     </div>
-    <div id="characterList" class="character-list"></div>
-    <div id="characterDetail" class="chracter-detail"></div>
-    <div class="pagination">
-        <button id="firstPage" class="pagination-button"><<</button>
-        <div id="pageNumbers" class="page-numbers"></div>
-        <button id="lastPage" class="pagination-button">>></button>
+    
+    <div id="characterDetails" class="character-details" style="display: none;">
+        <button id="backButton" class="back-button">Back to List</button>
     </div>
-
 
     <script src="script.js"></script>
 </body>

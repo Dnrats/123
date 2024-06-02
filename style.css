@@ -17,7 +17,7 @@ nav{
 nav img{
     width: 150px;
 }
-.settings{
+.controls{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,7 +33,7 @@ nav img{
     cursor: pointer;
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 .filter-button.active{
     background-color: #ccc;
@@ -46,28 +46,42 @@ nav img{
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
-    justify-content: center;
-    align-items: center;
 }
 .character-card {
-    display: inline-block; /* Display cards horizontally */
+    display: inline-block; 
     background-color: #f4f4f4;
     border: 1px solid #ccc;
     border-radius: 8px;
-    width: calc(25% - 20px); /* Calculate width for 4 cards in a row with margin */
+    width: calc(25% - 20px); 
     margin: 10px;
     padding: 10px;
     text-align: center;
     cursor: pointer;
-    box-sizing: border-box; /* Include padding and border in width calculation */
+    box-sizing: border-box; 
 }
-.character-card img{
-    max-width: 100%;
+.character-card:hover {
+    transform: scale(1.05);
+}
+.character-card img {
+    width: 200px;
+    height: 200px;
     border-radius: 8px;
 }
-.character-detail{
-    padding: 20px;
-    display: none;
+
+
+.character-card .character-info {
+    padding-top: 10px; 
+}
+
+.character-card .character-info h3 {
+    margin: 0;
+    font-size: 16px; 
+}
+
+.character-card .character-info p {
+    margin: 0;
+    font-size: 14px; 
+    color: #666; 
 }
 .pagination{
     display: flex;
@@ -83,6 +97,9 @@ nav img{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+.pagination-button:hover {
+    background-color: #0056b3;
+}
 .page-numbers{
     display: flex;
 }
@@ -93,4 +110,32 @@ nav img{
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+.page-numbers button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+#characterDetails {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+#characterDetails p{
+    margin: 20px;
+}
+
+.back-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.back-button:hover {
+    background-color: #0056b3;
 }

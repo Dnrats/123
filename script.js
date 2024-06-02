@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM elements
     const apiURL = 'https://rickandmortyapi.com/api/character';
     const characterList = document.getElementById('characterList');
     const searchBar = document.getElementById('searchBar');
@@ -6,7 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const firstPageButton = document.getElementById('firstPage');
     const lastPageButton = document.getElementById('lastPage');
     const pageNumbersContainer = document.getElementById('pageNumbers');
-    
+    const characterDetailsSection = document.getElementById('characterDetails');
+    const mainSection = document.getElementById('mainSection');
+
+    // Data variables
     let allCharacters = [];
     let filteredCharacters = [];
     let currentPage = 1;
@@ -15,18 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFilter = 'all';
     let searchQuery = '';
 
-    // FETCH CHARACTERS
-
+    // Function to fetch all characters from the API
     async function fetchAllCharacters() {
         try {
+            // Fetch the initial characters
             let response = await fetch(apiURL);
             let data = await response.json();
             allCharacters = data.results;
+
+            // Fetch additional characters if available
             while (data.info.next) {
                 response = await fetch(data.info.next);
                 data = await response.json();
                 allCharacters = allCharacters.concat(data.results);
             }
+
+            // Initialize filtered characters and display
             filteredCharacters = allCharacters;
             totalPages = Math.ceil(filteredCharacters.length / charactersPerPage);
             displayCharacters();
@@ -36,8 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // SHOW CHARACTERS
-
+    // Function to display characters in the list
     function displayCharacters() {
         characterList.innerHTML = '';
         const start = (currentPage - 1) * charactersPerPage;
@@ -54,12 +61,48 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>Status: ${character.status}</p>
                 </div>
             `;
+            characterCard.addEventListener('click', () => {
+                history.pushState({ id: character.id }, character.name, `?character=${character.id}`);
+                fetchCharacterDetails(character.id);
+            });
             characterList.appendChild(characterCard);
         });
     }
 
-    // PAGE NUMBERS AT THE BOTTOM
+    // Function to fetch and display character details
+    async function fetchCharacterDetails(id) {
+        try {
+            const response = await fetch(`${apiURL}/${id}`);
+            const character = await response.json();
+            displayCharacterDetails(character);
+        } catch (error) {
+            console.error('Error fetching character details:', error);
+        }
+    }
 
+    // Function to display character details in the details section
+    function displayCharacterDetails(character) {
+        characterDetailsSection.innerHTML = `
+            <h2>${character.name}</h2>
+            <img src="${character.image}" alt="${character.name}">
+            <p><strong>Status:</strong> ${character.status}</p>
+            <p><strong>Species:</strong> ${character.species}</p>
+            <p><strong>Gender:</strong> ${character.gender}</p>
+            <p><strong>Origin:</strong> ${character.origin.name}</p>
+            <p><strong>Location:</strong> ${character.location.name}</p>
+            <button id="backButton" class="back-button">Back to List</button>
+        `;
+        mainSection.style.display = 'none';
+        characterDetailsSection.style.display = 'block';
+
+        document.getElementById('backButton').addEventListener('click', () => {
+            history.pushState({}, 'Rick and Morty', '/');
+            characterDetailsSection.style.display = 'none';
+            mainSection.style.display = 'block';
+        });
+    }
+
+    // Function to display pagination buttons
     function displayPageNumbers() {
         pageNumbersContainer.innerHTML = '';
         const maxVisiblePages = 5;
@@ -86,14 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // SEARCH
-
+    // Function to handle search input
     function handleSearch() {
         searchQuery = searchBar.value.toLowerCase();
         applyFilters();
     }
 
-    
+    // Function to apply filters based on search and status
     function applyFilters() {
         filteredCharacters = allCharacters.filter(character => {
             const matchesSearch = character.name.toLowerCase().includes(searchQuery);
@@ -105,20 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
         displayCharacters();
         displayPageNumbers();
     }
-    searchBar.addEventListener('input', handleSearch);
 
-    // FILTERS
+    // Event listeners
+    searchBar.addEventListener('input', handleSearch);
 
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             currentFilter = e.target.getAttribute('data-status');
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            e.target.classList.add('active');
+            button.classList.add('active');
             applyFilters();
         });
     });
-
-    // FIRST & LAST PAGES
 
     firstPageButton.addEventListener('click', () => {
         currentPage = 1;
@@ -132,5 +172,15 @@ document.addEventListener('DOMContentLoaded', () => {
         displayPageNumbers();
     });
 
+    window.addEventListener('popstate', (event) => {
+        if (event.state && event.state.id) {
+            fetchCharacterDetails(event.state.id);
+        } else {
+            characterDetailsSection.style.display = 'none';
+            mainSection.style.display = 'block';
+        }
+    });
+
+    // Initial fetch of all characters
     fetchAllCharacters();
 });
