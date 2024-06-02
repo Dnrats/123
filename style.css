@@ -63,4 +63,26 @@ nav img{
 }
 .pagination{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.pagination-button{
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.page-numbers{
+    display: flex;
+}
+.page-numbers button{
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
