@@ -5,28 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style.css">
+    
 </head>
 <body>
-<nav>
-    <img src="/brandify_logo.svg" alt="website logo">
-</nav>
-<div class="settings">
-    <div class="filter-buttons">
-        <button data-status="all" class="filter-button active"></button>
-        <button data-status="alive" class="filter-button"></button>
-        <button data-status="dead" class="filter-button"></button>
+    <nav>
+        <img src="/brandify_logo.svg" onclick="location.reload()" alt="website logo">
+    </nav>
+    <div class="settings">
+        <div class="filter-buttons">
+            <button data-status="all" class="filter-button active">All</button>
+            <button data-status="alive" class="filter-button">Alive</button>
+            <button data-status="dead" class="filter-button">Dead</button>
+        </div>
+        <input type="text" id="searchBar" placeholder="Search">
     </div>
-    <input type="text" id="searhBar" placeholder="Search">
-</div>
-<div id="characterList" class="character-List"></div>
-<div id="chracterDetail" class="chracter-detail"></div>
-<div class="pagination">
-    <button id="firstPage" class="pagination-button"><<</button>
-    <div id="pageNumbers" class="page-numbers"></div>
-    <button id="lastPage" class="pagination-button">>></button>
-</div>
+    <div id="characterList" class="character-list"></div>
+    <div id="characterDetail" class="chracter-detail"></div>
+    <div class="pagination">
+        <button id="firstPage" class="pagination-button"><<</button>
+        <div id="pageNumbers" class="page-numbers"></div>
+        <button id="lastPage" class="pagination-button">>></button>
+    </div>
 
 
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

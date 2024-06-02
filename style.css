@@ -4,6 +4,10 @@
 }
 body{
     font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 nav{
     display: flex;
@@ -42,16 +46,20 @@ nav img{
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
-.character-card{
+.character-card {
+    display: inline-block; /* Display cards horizontally */
     background-color: #f4f4f4;
     border: 1px solid #ccc;
     border-radius: 8px;
-    width: 200px;
+    width: calc(25% - 20px); /* Calculate width for 4 cards in a row with margin */
     margin: 10px;
     padding: 10px;
     text-align: center;
     cursor: pointer;
+    box-sizing: border-box; /* Include padding and border in width calculation */
 }
 .character-card img{
     max-width: 100%;
