@@ -38,3 +38,29 @@ nav img{
     padding: 10px;
     width: 200px;
 }
+.character-list{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.character-card{
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+.character-card img{
+    max-width: 100%;
+    border-radius: 8px;
+}
+.character-detail{
+    padding: 20px;
+    display: none;
+}
+.pagination{
+    display: flex;
+}
