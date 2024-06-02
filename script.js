@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pageNumbersContainer = document.getElementById('pageNumbers');
     const characterDetailsSection = document.getElementById('characterDetails');
     const mainSection = document.getElementById('mainSection');
+    const logo = document.querySelector('nav img'); // Assuming the logo is within the nav element
 
     // Data variables
     let allCharacters = [];
@@ -19,13 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentFilter = 'all';
     let searchQuery = '';
 
-// Adjust charactersPerPage based on screen size
-if (window.matchMedia("(max-width: 768px)").matches) {
-    charactersPerPage = 4; // For mobile devices
-} else {
-    charactersPerPage = 8; // For desktop
-}
+    // Base URL for handling subfolder
+    const baseURL = '/123';
 
+    // Adjust charactersPerPage based on screen size
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        charactersPerPage = 4; // For mobile devices
+    } else {
+        charactersPerPage = 8; // For desktop
+    }
 
     // Function to fetch all characters from the API
     async function fetchAllCharacters() {
@@ -70,7 +73,7 @@ if (window.matchMedia("(max-width: 768px)").matches) {
                 </div>
             `;
             characterCard.addEventListener('click', () => {
-                history.pushState({ id: character.id }, character.name, `?character=${character.id}`);
+                history.pushState({ id: character.id }, character.name, `${baseURL}/?character=${character.id}`);
                 fetchCharacterDetails(character.id);
             });
             characterList.appendChild(characterCard);
@@ -91,8 +94,8 @@ if (window.matchMedia("(max-width: 768px)").matches) {
     // Function to display character details in the details section
     function displayCharacterDetails(character) {
         characterDetailsSection.innerHTML = `
-            <h2>${character.name}</h2>
             <img src="${character.image}" alt="${character.name}">
+            <h2>${character.name}</h2>
             <p><strong>Status:</strong> ${character.status}</p>
             <p><strong>Species:</strong> ${character.species}</p>
             <p><strong>Gender:</strong> ${character.gender}</p>
@@ -104,7 +107,7 @@ if (window.matchMedia("(max-width: 768px)").matches) {
         characterDetailsSection.style.display = 'block';
 
         document.getElementById('backButton').addEventListener('click', () => {
-            history.pushState({}, 'Rick and Morty', '/');
+            history.pushState({}, 'Rick and Morty', baseURL);
             characterDetailsSection.style.display = 'none';
             mainSection.style.display = 'block';
         });
@@ -178,6 +181,13 @@ if (window.matchMedia("(max-width: 768px)").matches) {
         currentPage = totalPages;
         displayCharacters();
         displayPageNumbers();
+    });
+
+    // Add event listener for logo click
+    logo.addEventListener('click', () => {
+        history.pushState({}, 'Rick and Morty', baseURL);
+        characterDetailsSection.style.display = 'none';
+        mainSection.style.display = 'block';
     });
 
     window.addEventListener('popstate', (event) => {
