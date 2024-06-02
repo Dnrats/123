@@ -12,3 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let totalPages = 1;
     let currentFilter = 'all';
     let searchQuery = '';
+
+    async function fetchCharacters(page = 1) {
+        try {
+            const response = await fetch(`${apiURL}?page=${page}`);
+            const data = await response.json();
+            characters = data.results;
+            totalPages = data.info.pages;
+            displayCharacters(characters);
+            updatePagination();
+        } catch (error) {
+            console.error('Error fetching characters:', error);
+        }
+    }
