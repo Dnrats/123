@@ -48,6 +48,10 @@ To run this project locally:
 
 The project uses the [Rick and Morty API](https://rickandmortyapi.com/documentation) to fetch character data.
 
+## Web link
+
+dnrats.com/RnM
+
 ## Project Structure
 
 ```plaintext
@@ -56,3 +60,5 @@ The project uses the [Rick and Morty API](https://rickandmortyapi.com/documentat
 ├── style.css
 ├── script.js
 └── README.md
+
+
