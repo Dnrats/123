@@ -50,7 +50,7 @@ The project uses the [Rick and Morty API](https://rickandmortyapi.com/documentat
 
 ## Web link
 
-dnrats.com/RnM
+[dnrats.com/RnM](https://www.dnrats.com/RnM/)
 
 ## Project Structure
 
